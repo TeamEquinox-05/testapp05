@@ -16,7 +16,7 @@ class _BookingPageState extends State<BookingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text('Bookings')),
+      body: Center(child: Text('Booking')),
 
 
 
