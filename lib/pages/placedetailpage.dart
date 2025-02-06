@@ -14,31 +14,51 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.placeName),
-        backgroundColor: Colors.transparent,  // Make AppBar transparent
-        elevation: 0,  // Remove the shadow
-        actions: [], // Optionally, remove actions or add custom ones
-      ),
-      body: Stack(
-        fit: StackFit.expand,  // Make the Stack cover the full screen
-        children: [
-          Image.asset(
-            'assets/images/${widget.placeName}.jpg',  // Add your image here
-            fit: BoxFit.cover,  // Cover the screen with the image
-          ),
-          Center(
-            child: Text(
-              'Welcome to ${widget.placeName}',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,  // Ensure the text is visible on top of the image
+      
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+         title: Text(widget.placeName,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'WorkSans'),),
+            backgroundColor: Colors.transparent,  // Make AppBar transparent
+            elevation: 0,  // Remove the shadow
+            pinned: true,  // Pin the AppBar to the top
+            expandedHeight: 300,  // Set the height of the expanded AppBar
+              // Remove the shadow
+        iconTheme: IconThemeData(color: Colors.white,shadows: [BoxShadow(color: Colors.black, blurRadius: 10)]), 
+         // Optionally, remove actions or add custom ones
+            flexibleSpace: FlexibleSpaceBar(
+              background: Container(
+                margin: EdgeInsets.only(bottom: 15), // Space for shadow visibility
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.4), // Shadow color
+                      blurRadius: 10, // Softness of shadow
+                      spreadRadius: 2, // How much shadow spreads
+                      offset: Offset(0, 5), // Shadow position
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ), 
+                  
+                child: Image.asset(
+                  'assets/images/Auditorium.jpg', // Replace with your image path
+                  fit: BoxFit.cover,
+                ),
+                ),
               ),
             ),
           ),
         ],
-      ),
+      )
     );
   }
 }
