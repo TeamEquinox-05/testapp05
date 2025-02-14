@@ -18,7 +18,7 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-         title: Text(widget.placeName,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'WorkSans'),),
+         title: Text(widget.placeName,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'WorkSans',shadows: [BoxShadow(color: Colors.black, blurRadius: 10)]),),
             backgroundColor: Colors.transparent,  // Make AppBar transparent
             elevation: 0,  // Remove the shadow
             pinned: true,  // Pin the AppBar to the top
@@ -50,7 +50,7 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
                   ), 
                   
                 child: Image.asset(
-                  'assets/images/Auditorium.jpg', // Replace with your image path
+                  'assets/images/${widget.placeName}.jpg', // Replace with your image path
                   fit: BoxFit.cover,
                 ),
                 ),
