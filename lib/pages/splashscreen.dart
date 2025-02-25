@@ -10,7 +10,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-@override
+  @override
   @override
   void initState() {
     super.initState();
@@ -19,7 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _navigateToLogin() async {
     await Future.delayed(Duration(seconds: 2));
-    if (mounted) { // Ensure widget is still in the tree
+    if (mounted) {
+      // Ensure widget is still in the tree
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => Homepage()),
@@ -27,25 +28,20 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-        Center(
-          
-          child: Container(
-            height: 300,
-            width: 300,
-            child: Image.asset('assets/images/logo.png'),
-          ),
-         )
-      ])
-    );
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+          Center(
+            child: SizedBox(
+              height: 300,
+              width: 300,
+              child: Image.asset('assets/images/logo.png'),
+            ),
+          )
+        ]));
   }
 }
