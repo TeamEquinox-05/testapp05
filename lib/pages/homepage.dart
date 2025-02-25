@@ -25,7 +25,7 @@ class _HomepageState extends State<Homepage> {
     {
       "title": "Elon Musk's Talk",
       "time": "10:00 AM",
-      "bookedBy": "Sanjeet Sir"
+      "bookedBy": "Sanjeeto Sir"
     },
     {
       "title": "AI Conference",
@@ -86,7 +86,7 @@ class _HomepageState extends State<Homepage> {
                   ],
                 ),
                 SizedBox(height: 20),
-            
+
                 Container(
                   decoration: BoxDecoration(
                       color: Colors.deepPurpleAccent,
@@ -95,7 +95,7 @@ class _HomepageState extends State<Homepage> {
                   child: SizedBox(
                     height: (places.length).ceil() *
                         80.0, // Adjust height dynamically
-            
+
                     child: GridView.builder(
                       shrinkWrap: true,
                       physics:
@@ -107,20 +107,15 @@ class _HomepageState extends State<Homepage> {
                           crossAxisCount: 2),
                       itemCount: places.length,
 
-
-
-
                       itemBuilder: (context, index) {
-
-                          
-
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(
-                               context,
-                                MaterialPageRoute(
-                                  builder: (context) => PlaceDetailPage(placeName: places[index]['place']!),
-                                ),
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PlaceDetailPage(
+                                    placeName: places[index]['place']!),
+                              ),
                             );
                           },
                           child: Container(
@@ -143,9 +138,9 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                 ),
-            
+
                 SizedBox(height: 20),
-            
+
                 //list of bookings
                 Container(
                   decoration: BoxDecoration(
@@ -164,7 +159,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ),
                 SizedBox(height: 20),
-            
+
                 SizedBox(
                   height: bookings.isNotEmpty
                       ? bookings.length * 105.0
@@ -189,7 +184,8 @@ class _HomepageState extends State<Homepage> {
                           )
                         : ListView.builder(
                             shrinkWrap: true,
-                             physics: NeverScrollableScrollPhysics(), // Disable inner scrolling
+                            physics:
+                                NeverScrollableScrollPhysics(), // Disable inner scrolling
                             itemCount: bookings.length,
                             itemBuilder: (context, index) {
                               return Padding(
