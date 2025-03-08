@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:testapp01/pages/homepage.dart';
-import 'package:testapp01/pages/login.dart';
 import 'package:testapp01/pages/splashscreen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,8 +11,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Venue Booking App',
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const SplashScreen(),
     );
   }
 }

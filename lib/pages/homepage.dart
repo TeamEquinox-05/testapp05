@@ -59,83 +59,179 @@ class _HomepageState extends State<Homepage> {
       SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(25.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 25.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          'Welcome, User',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontFamily: 'WorkSans',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                // Welcome Section
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.deepPurple.shade400,
+                        Colors.deepPurple.shade600
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.deepPurple.withOpacity(0.3),
+                        blurRadius: 10,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Welcome back,',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white70,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            'User',
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: CircleAvatar(
+                          radius: 22,
+                          backgroundColor: Colors.deepPurpleAccent,
+                          child:
+                              Icon(Icons.person, size: 28, color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                SizedBox(height: 25),
+
+                // Search Bar
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: Colors.grey.shade300),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.search, color: Colors.grey.shade600),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Search for places...',
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(color: Colors.grey.shade500),
                           ),
                         ),
-                      ],
-                    ),
-                    CircleAvatar(
-                      radius: 20,
-                      backgroundColor: Colors.deepPurpleAccent,
-                      child: Icon(Icons.person, size: 30, color: Colors.white),
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(height: 20),
-            
+
+                SizedBox(height: 25),
+
+                // Places Grid
+                Text(
+                  'Available Places',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+                SizedBox(height: 15),
                 Container(
                   decoration: BoxDecoration(
-                      color: Colors.deepPurpleAccent,
-                      borderRadius: BorderRadius.circular(12)),
-                  padding: EdgeInsets.all(20),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: SizedBox(
-                    height: (places.length).ceil() *
-                        80.0, // Adjust height dynamically
-            
+                    height: (places.length / 2).ceil() * 120.0,
                     child: GridView.builder(
                       shrinkWrap: true,
-                      physics:
-                          NeverScrollableScrollPhysics(), // Disable inner scrolling
+                      physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisSpacing:
-                              16.0, // Horizontal space between items
-                          mainAxisSpacing: 16.0,
-                          crossAxisCount: 2),
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 15,
+                        mainAxisSpacing: 15,
+                        childAspectRatio: 1.5,
+                      ),
                       itemCount: places.length,
-
-
-
-
                       itemBuilder: (context, index) {
-
-                          
-
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(
-                               context,
-                                MaterialPageRoute(
-                                  builder: (context) => PlaceDetailPage(placeName: places[index]['place']!),
-                                ),
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PlaceDetailPage(
+                                    placeName: places[index]['place']!),
+                              ),
                             );
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(12)),
-                            padding: const EdgeInsets.all(10.0),
-                            child: Text(
-                              places[index]['place']!,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: 'WorkSans',
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.deepPurple.shade300,
+                                  Colors.deepPurple.shade500,
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
                               ),
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.deepPurple.withOpacity(0.2),
+                                  blurRadius: 8,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.place,
+                                  color: Colors.white,
+                                  size: 24,
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  places[index]['place']!,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
                             ),
                           ),
                         );
@@ -143,116 +239,137 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                 ),
-            
-                SizedBox(height: 20),
-            
-                //list of bookings
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurpleAccent,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    'Today\'s Bookings',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontFamily: 'WorkSans',
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+
+                SizedBox(height: 25),
+
+                // Bookings Section
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Today\'s Bookings',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
                     ),
-                  ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'See All',
+                        style: TextStyle(
+                          color: Colors.deepPurpleAccent,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 20),
-            
+                SizedBox(height: 15),
+
                 SizedBox(
-                  height: bookings.isNotEmpty
-                      ? bookings.length * 105.0
-                      : 100.0, // Adjust height dynamically
+                  height: bookings.isNotEmpty ? bookings.length * 100.0 : 100.0,
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    padding: const EdgeInsets.all(10.0),
                     child: bookings.isEmpty
                         ? Center(
-                            child: Text(
-                              'No Bookings Found',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: 'WorkSans',
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.event_busy,
+                                  size: 40,
+                                  color: Colors.grey.shade400,
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  'No bookings for today',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey.shade600,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
                             ),
                           )
                         : ListView.builder(
-                            shrinkWrap: true,
-                             physics: NeverScrollableScrollPhysics(), // Disable inner scrolling
+                            physics: NeverScrollableScrollPhysics(),
                             itemCount: bookings.length,
                             itemBuilder: (context, index) {
                               return Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.only(bottom: 12.0),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.circular(12),
+                                    borderRadius: BorderRadius.circular(15),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 2,
-                                        blurRadius: 5,
+                                        color: Colors.grey.withOpacity(0.1),
+                                        spreadRadius: 1,
+                                        blurRadius: 8,
                                         offset: Offset(0, 3),
                                       ),
                                     ],
                                   ),
-                                  padding: const EdgeInsets.all(20.0),
+                                  padding: const EdgeInsets.all(15),
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Row(
-                                        children: [
-                                          CircleAvatar(
-                                            backgroundColor:
-                                                Colors.deepPurpleAccent,
-                                            child: Icon(
-                                              Icons.calendar_month,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                          SizedBox(width: 10),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                bookings[index]['title']!,
-                                                style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black,
-                                                ),
-                                              ),
-                                              Text(
-                                                bookings[index]['bookedBy']!,
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  color: Colors.grey,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ],
+                                      Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                          color: Colors.deepPurple.shade50,
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Icon(
+                                          Icons.event,
+                                          color: Colors.deepPurpleAccent,
+                                          size: 24,
+                                        ),
                                       ),
-                                      Text(
-                                        bookings[index]['time']!,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontFamily: 'WorkSans',
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
+                                      SizedBox(width: 15),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              bookings[index]['title']!,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black87,
+                                              ),
+                                            ),
+                                            SizedBox(height: 4),
+                                            Text(
+                                              bookings[index]['bookedBy']!,
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.grey.shade600,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 6,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.deepPurple.shade50,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Text(
+                                          bookings[index]['time']!,
+                                          style: TextStyle(
+                                            color: Colors.deepPurpleAccent,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 14,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -269,7 +386,7 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
     );
-    _pages.addAll([BookingPage(), NotificationPage(), SettingsPage()]);
+    _pages.addAll([BookingsPage(), NotificationsPage(), SettingsPage()]);
   }
 
   @override
